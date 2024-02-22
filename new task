@@ -1,0 +1,13 @@
+#include <iostream>
+
+int main() {
+
+int x = 16;
+float z = 4.5;
+double y = 18.99;
+char k = 'A';
+bool d = true;
+
+std::cout << "x = " << x << std::endl << "z = " << z << std::endl << "y = " << y << std::endl << "k = " << k << std::endl << "d = " << d << std::endl;
+
+}
