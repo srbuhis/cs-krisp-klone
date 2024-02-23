@@ -1,0 +1,35 @@
+#include <iostream>
+
+enum Days {
+	Monday,
+	Tuesday,
+	Wednesday,
+	Thursday,
+	Fraiday,
+	Saturday,
+	Sanday
+};
+
+struct Date {
+	int Day;
+	int Month;
+	int Year;
+};
+
+void print(Days W, Date *D){
+	const char *DayNames[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sanday"};
+	std::cout << DayNames[W] << " " << D -> Day << "/0" << D -> Month << "/" << D -> Year << std::endl; 
+}
+
+
+int main(){
+
+	Date D;
+	Days W = Monday;
+	
+	D.Day = 15;
+	D.Month = 7;
+	D.Year = 2020;
+		
+	print(W, &D);
+}
