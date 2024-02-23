@@ -1,0 +1,28 @@
+#include <iostream>
+
+int main() {
+
+	const int size = 100;
+
+	char str[size];
+	std::cin.getline(str, size);
+
+	int len = 0;
+	for(int i = 0; str[i]; ++i){
+	++len;
+	}
+
+	std::cout << len << std::endl;
+
+	char str1[size];
+	std::cin.getline(str1, size);
+
+	int i;	
+	for(i = len; str1[i - len]; ++i){
+	str[i] = str1[i - len];
+	}
+	
+	str[i] = '\0';
+	
+	std::cout << str;
+}
