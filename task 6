@@ -1,0 +1,19 @@
+#include <iostream>
+
+int main() {
+
+int var = 15;
+
+int *ptr = &var;
+
+int &ref = var;
+
+*ptr = 8;
+
+std::cout << var << std::endl;
+
+ref = 4;
+
+std::cout << var << std::endl;
+
+}
