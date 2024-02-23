@@ -1,0 +1,45 @@
+#include <iostream>
+
+int main() {
+
+int number;
+std::cout << "Please, input a number: " << std::endl;
+std::cin >> number;
+
+if(number == 0) 
+    std::cout << "The number is equal to zero! " << std::endl;
+    else 
+        if(number > 0)
+        std::cout << "The number is positive! " << std::endl;
+            else 
+            std::cout << "The number is negative! " << std::endl;
+    
+switch(number){
+    case 90 ... 100: {
+    std::cout << "Grade of a number is A" << std::endl;
+    break;
+    }
+    case 101 ... 110: {
+    std::cout << "Grade of a number is B" << std::endl;
+    break;
+    }
+    case 111 ... 120: {
+    std::cout << "Grade of a number is C" << std::endl;
+    break;
+    }
+    case 121 ... 130: {
+    std::cout << "Grade of a number is D" << std::endl;
+    break;
+    }
+    case 131 ... 140: {
+    std::cout << "Grade of a number is F" << std::endl;
+    break;
+    }
+    default: {
+    std::cout << "Invalid number!" << std::endl;
+    }
+}
+    for(int i = 1; i <= 10; ++i){
+    std::cout << i << std::endl;
+    }
+}
