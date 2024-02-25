@@ -1,0 +1,50 @@
+#include <iostream>
+#include <string> 
+
+class Book {	
+private:
+	std::string title;
+	std::string author;
+	long int ISBN;
+
+public:
+	Book(): ISBN(0){}
+	Book(const std::string &t, const std::string &a, long int i) : title(t), author(a), ISBN(i) {}
+
+
+	std::string getTitle() const {
+	return title;
+	}	
+
+	std::string getAuthor() const {
+	return author;
+	}
+
+	long int getISBN() const {
+	return ISBN;
+	}
+
+	void setTitle (const std::string &t) {
+	title = t;
+	}
+
+	void setAuthor (const std::string &a) { 
+	author = a;
+	}
+
+	void setISBN (const long int &I) {
+	 ISBN = I;
+	}
+};
+
+int main() {
+
+Book B;
+
+B.setTitle("ONEGIN");
+B.setAuthor("Pushkin");
+B.setISBN(13345678001);
+
+std::cout << "Title: " << B.getTitle() << std::endl << "Author: " << B.getAuthor() << std::endl << "ISBN: " << B.getISBN() << std::endl;
+
+}
