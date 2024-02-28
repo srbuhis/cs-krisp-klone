@@ -1,0 +1,123 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+enum SortingStrategy {
+        BUBBLE_SORT,
+        SELECTION_SORT
+};
+
+struct SortingOption {
+	SortingStrategy strategy;
+        void (*sortfunction)(std::vector<int>&);
+};
+
+void BubbleSort(std::vector<int> &arr) {
+    int n = arr.size();
+	for(int i = 0; i < n - 1; ++i) {
+        for(int j = 0; j < n - 1 - i; ++j) {
+	    if(arr[j] > arr[j + 1]) {
+	    int temp = arr[j + 1];
+	    arr[j + 1] = arr[j];
+	    arr[j] = temp;
+	    }
+	}
+    } 
+}
+
+void SelectionSort(std::vector<int> &arr) {
+    int n = arr.size();
+	for(int i = 0; i < n - 1; ++i) {
+    int min_index = i;
+        for(int j = i + 1; j < n; ++j) {
+	    if(arr[min_index] > arr[j]) {
+	    min_index = j;
+	    }
+	}
+    int temp = arr[min_index];
+    arr[min_index] = arr[i];
+    arr[i] = temp;
+    }
+}
+
+std::vector<int> readArrayFromFile(const std::string &filename) {
+std::vector<int> arr;
+std::ifstream inputFile(filename);
+
+    if(!inputFile.is_open()) {
+        std::cerr << "Error opening the file: " << filename << std::endl;
+        return arr;
+    }
+
+    int number;
+    while(inputFile >> number) {
+        arr.push_back(number);
+    }
+
+    inputFile.close();
+
+    return arr;
+}
+
+void saveSortedArrayToFile(const std::string &fileName, const std::vector<int> &arr) {
+std::ofstream outputFile(fileName);
+	
+    if(!outputFile.is_open()) {
+        std::cerr << "Error opening file for writing: " << fileName << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
+    for(const auto &number : arr) {
+        outputFile << number << " ";
+    }
+
+    outputFile.close();
+}
+
+int main() {
+
+SortingOption sortopt[] = {{BUBBLE_SORT, BubbleSort}, {SELECTION_SORT, SelectionSort}};
+
+std::string fileName;
+std::cout << "Input a file name: ";
+std::cin >> fileName;
+
+std::vector<int> unsortedArray = readArrayFromFile(fileName);
+
+std::cout << "Unsorted Array: ";
+for(const auto &number : unsortedArray) {
+    std::cout << number << " ";
+}
+
+std::cout << std::endl;
+
+int selection;
+std::cout << "Select sorting algorithm: ";
+std::cout << "1. Bubble Sort" << std::endl;
+std::cout << "2. Selection Sort" << std::endl;
+std::cout << "Input number of your selection: ";
+std::cin >> selection;
+
+if(selection < 1 || selection > sizeof(sortopt)/sizeof(SortingOption)){
+    std::cerr << "Invalid selection";
+    return 1;
+}
+
+sortopt[selection -1].sortfunction(unsortedArray);
+
+std::cout << "Sorted Array: ";
+for(const auto &number : unsortedArray) {
+    std::cout << number << " ";
+}
+
+std::cout << std::endl;
+
+std::string newFileName;
+std::cin >> newFileName;
+
+saveSortedArrayToFile(newFileName, unsortedArray);
+
+std::cout << "Sorted Array save to: " << newFileName << std::endl;
+
+}
+
